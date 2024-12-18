@@ -1,19 +1,10 @@
 import subprocess
 import os
 import sys
+from get_key import generate_fernet_key_from_string  # 导入 get_key.py 中的生成密钥函数
 
 # 定义 key.key 文件路径
 key_file_path = 'key.key'
-
-def get_key_and_write_to_file():
-    """提示用户输入 key，并将其写入 key.key 文件"""
-    key = input("请输入一个密钥（key）：")
-    try:
-        with open(key_file_path, 'w') as key_file:
-            key_file.write(key)  # 将用户输入的 key 写入文件
-        print(f"密钥已写入 {key_file_path}.")
-    except Exception as e:
-        print(f"无法写入 {key_file_path} 文件: {e}")
 
 def clear_key_file():
     """清空 key.key 文件中的内容"""
@@ -40,8 +31,4 @@ def run_diarium():
         print(f"无法运行 Diarium Base.py: {e}")
 
 if __name__ == "__main__":
-    # 第一步：输入密钥并写入 key.key 文件
-    get_key_and_write_to_file()
-
-    # 第二步：运行 Diarium Base.py 并在退出后清空 key.key 文件
     run_diarium()
